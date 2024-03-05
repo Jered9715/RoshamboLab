@@ -1,38 +1,29 @@
 ﻿using Roshambo_Lab;
 using System.Net.Http.Headers;
 
-//Welcome to program
 Console.WriteLine("Welcome to Rock Paper Scissors!");
 Console.WriteLine();
 
-//create humanPlayer
 Console.Write("What is your name? : ");
 HumanPlayer humanPlayer = new HumanPlayer();
 
-//set humanPlayer name
 humanPlayer.Name = Console.ReadLine();
 Console.WriteLine();
 
-//set computerPlayers
 RockPlayer rockPlayer = new RockPlayer();
 rockPlayer.Name = "Mountain";
 RandomPlayer randomPlayer = new RandomPlayer();
 randomPlayer.Name = "Loose Canon";
 
-//select computerPlayer Mountain / Loose Canon
-
-
 string playerOpponentChoice = "";
 bool playerWantsToQuit = false;
-//if else if else that helps validate inside while loop that will handle the validation
-//if and else if will hold the main program loop
+
 while (true)
 {
     Console.Write("Would you like to play against the Mountain or the Loose Canon? (m/l): ");
     playerOpponentChoice = Console.ReadLine();
     if (playerOpponentChoice.ToLower().Trim() == "m")
     {
-        //start main program loop for rockPlayer - ending when user no longer wants to play
         while (playerWantsToQuit == false)
         {
             RockPaperScissorsPrompt();
@@ -58,7 +49,6 @@ while (true)
     }
     else if (playerOpponentChoice.ToLower().Trim() == "l")
     {
-        //start main program loop for randomPlayer - ending when user no longer wants to play
         while (playerWantsToQuit == false)
         {
             RockPaperScissorsPrompt();
@@ -92,16 +82,11 @@ while (true)
 }
 
 
-
-
-//start main program loop - ending when user no longer wants to play
-
 void RockPaperScissorsPrompt()
 {
     Console.Write("Rock, paper, or scissors? (r/p/s): ");
 }
 
-//convert user input
 void ConverHumanInputToPlayerChoice(string userInput)
 {
     if (userInput.ToLower().Trim() == "r")
@@ -125,7 +110,7 @@ void ConverHumanInputToPlayerChoice(string userInput)
 
 
 
-//method for end request ending returning bool
+
 bool PlayerQuitRequest(string endRequestAnswer)
 {
     if (endRequestAnswer.ToLower().Trim() != "y")
