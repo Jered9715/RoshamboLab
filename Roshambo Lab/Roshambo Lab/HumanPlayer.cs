@@ -12,6 +12,11 @@ namespace Roshambo_Lab
         public override string Name { get; set; }
         public override int PlayerChoice { get; set; }
 
+        public void SettingPlayerChoice(int userInput)
+        {
+        PlayerChoice = userInput;  
+        }
+
         public override Roshambo GenerateRochambo()
         {
             if (PlayerChoice == 1)
