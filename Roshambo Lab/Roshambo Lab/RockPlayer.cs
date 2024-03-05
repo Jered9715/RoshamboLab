@@ -11,9 +11,9 @@ namespace Roshambo_Lab
         public override string Name { get; set; }
         public override int PlayerChoice { get; set; }
 
-        public override int GenerateRochambo()
+        public override Roshambo GenerateRochambo()
         {
-            return 1;    
+            return Roshambo.rock;    
         }
     }
 }

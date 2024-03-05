@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Roshambo_Lab
 {
-    public abstract class Player
+    internal abstract class Player
     {
         public abstract string Name { get; set; }
         public abstract int PlayerChoice { get; set; }
 
 
 
-        public abstract int GenerateRochambo();
+        public abstract Roshambo GenerateRochambo();
     }
 }

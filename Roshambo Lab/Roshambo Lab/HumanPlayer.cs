@@ -7,13 +7,26 @@ using System.Threading.Tasks;
 namespace Roshambo_Lab
 {
     internal class HumanPlayer : Player
+
     {
         public override string Name { get; set; }
         public override int PlayerChoice { get; set; }
 
-        public override int GenerateRochambo(int userInput)
+        public override Roshambo GenerateRochambo()
         {
-            return userInput;
+            if (PlayerChoice == 1)
+            {
+                return Roshambo.rock;
+            }
+            else if (PlayerChoice == 2)
+            {
+                return Roshambo.paper;
+            }
+            else
+            {
+                return Roshambo.scissors;
+            }
         }
+    
     }
 }

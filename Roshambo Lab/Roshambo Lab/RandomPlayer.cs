@@ -8,12 +8,26 @@ namespace Roshambo_Lab
 {
     internal class RandomPlayer : Player
     {
-        public override string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public override int PlayerChoice { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public override string Name { get; set; }
+        public override int PlayerChoice { get; set ; }
 
-        public override int GenerateRochambo()
+        public override Roshambo GenerateRochambo()
         {
-            throw new NotImplementedException();
+            Random rnd = new Random();
+            int randomInteger = rnd.Next(1,4);
+
+            if (randomInteger == 1)
+            {
+                return Roshambo.rock;
+            }
+            else if (randomInteger == 2)
+            {
+                return Roshambo.paper;
+            }
+            else
+            {
+                return Roshambo.scissors;
+            }
         }
     }
 }
