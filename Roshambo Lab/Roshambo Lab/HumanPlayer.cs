@@ -12,7 +12,7 @@ namespace Roshambo_Lab
         public override string Name { get; set; }
         public override int PlayerChoice { get; set; }
 
-        public void SettingPlayerChoice(int userInput)
+        public void SetPlayerChoice(int userInput)
         {
         PlayerChoice = userInput;  
         }

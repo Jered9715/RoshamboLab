@@ -1,4 +1,5 @@
 ﻿using Roshambo_Lab;
+using System.Net.Http.Headers;
 
 //Welcome to program
 Console.WriteLine("Welcome to Rock Paper Scissors!");
@@ -34,9 +35,21 @@ while (true)
         //start main program loop for rockPlayer - ending when user no longer wants to play
         while (playerWantsToQuit == false)
         {
+            RockPaperScissorsPrompt();
+            string userInput = Console.ReadLine();
+            ConverHumanInputToPlayerChoice(userInput);
+
+            Roshambo humanChoice = humanPlayer.GenerateRochambo();
+            Roshambo computerChoice = rockPlayer.GenerateRochambo();
+
+            Console.WriteLine($"{humanPlayer.Name}: {PlayerThrowSelection(humanChoice)}");
+            Console.WriteLine($"{rockPlayer.Name}: {PlayerThrowSelection(computerChoice)}");
+
+            RoundResult roundResult = RoshamboRoundResultCalulator(humanChoice, computerChoice);
             
-            
-            
+            Console.WriteLine(WinDetermination(roundResult,humanPlayer.Name,rockPlayer.Name));
+            Console.WriteLine();
+
             Console.Write("Play again? (y/n): ");
             string endRequest = Console.ReadLine();
             playerWantsToQuit = PlayerQuitRequest(endRequest);
@@ -48,6 +61,21 @@ while (true)
         //start main program loop for randomPlayer - ending when user no longer wants to play
         while (playerWantsToQuit == false)
         {
+            RockPaperScissorsPrompt();
+            string userInput = Console.ReadLine();
+            ConverHumanInputToPlayerChoice(userInput);
+
+            Roshambo humanChoice = humanPlayer.GenerateRochambo();
+            Roshambo computerChoice = randomPlayer.GenerateRochambo();
+
+            Console.WriteLine($"{humanPlayer.Name}: {PlayerThrowSelection(humanChoice)}");
+            Console.WriteLine($"{randomPlayer.Name}: {PlayerThrowSelection(computerChoice)}");
+
+            RoundResult roundResult = RoshamboRoundResultCalulator(humanChoice,computerChoice);
+
+            Console.WriteLine(WinDetermination(roundResult, humanPlayer.Name, randomPlayer.Name));
+            Console.WriteLine();
+
 
             Console.Write("Play again? (y/n): ");
             string endRequest = Console.ReadLine();
@@ -55,7 +83,7 @@ while (true)
         }
         break;
     }
-    else 
+    else
     {
         Console.WriteLine("That is not a valid selection. Please try again.");
         Console.WriteLine();
@@ -67,6 +95,34 @@ while (true)
 
 
 //start main program loop - ending when user no longer wants to play
+
+void RockPaperScissorsPrompt()
+{
+    Console.Write("Rock, paper, or scissors? (r/p/s): ");
+}
+
+//convert user input
+void ConverHumanInputToPlayerChoice(string userInput)
+{
+    if (userInput.ToLower().Trim() == "r")
+    {
+        humanPlayer.SetPlayerChoice(1);
+    }
+    else if (userInput == "p")
+    {
+        humanPlayer.SetPlayerChoice(2);
+    }
+    else if (userInput == "s")
+    {
+        humanPlayer.SetPlayerChoice(3);
+    }
+    else
+    {
+        Console.WriteLine($"{userInput} is not a valid choice");
+        Console.WriteLine();
+    }
+}
+
 
 
 //method for end request ending returning bool
@@ -88,6 +144,40 @@ bool PlayerQuitRequest(string endRequestAnswer)
     return false;
 }
 
+string PlayerThrowSelection(Roshambo playerSelection)
+{
+    switch (playerSelection)
+    {
+        case Roshambo.rock:
+            return "Rock";
+        case Roshambo.paper:
+            return "Paper";
+        case Roshambo.scissors:
+            return "Scissors";
+        default:
+            return "invalid Response";
+    }
+}
+
+string WinDetermination(RoundResult input, string humanPlayer, string computerPlayer)
+{
+    switch (input)
+    {
+        case RoundResult.humanWin:
+            return $"{humanPlayer} Wins!";
+           
+
+        case RoundResult.computerWin:
+            return $"{computerPlayer} Wins!";
+            
+
+        case RoundResult.draw:
+            return "Draw!";
+
+        default:
+            return "Not valid input";
+    }
+}
 
 RoundResult RoshamboRoundResultCalulator(Roshambo humanPlayer, Roshambo computerPlayer)
 {
